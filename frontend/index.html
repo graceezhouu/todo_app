@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Todo List</h1>
+            <p class="subtitle">Keep track of tasks, deadlines, and priorities! </p>
+        </header>
+       
+        <main class="main-content">
+            <div class="add-todo-section">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="todoInput" 
+                        placeholder="What needs to be done?"
+                        maxlength="200"
+                    >
+                    <button id="addButton" class="add-btn">Add</button>
+                </div>
+            </div>
+
+            <div class="todo-list-container">
+                <ul id="todoList" class="todo-list">
+                    <!-- todo items will be inserted here dynamically -->
+                </ul>
+                <div id="emptyState" class="empty-state">
+                    <p>No items yet. Add one above!</p>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div class="color-section">
+                    <h3>Select Background Color</h3>
+                    <div class="color-picker">
+                        <button class="color-btn" data-color="#ffeaa7" style="background-color: #ffeaa7;" title="Pastel Yellow"></button>
+                        <button class="color-btn" data-color="#fab1a0" style="background-color: #fab1a0;" title="Pastel Orange"></button>
+                        <button class="color-btn" data-color="#ff7675" style="background-color: #ff7675;" title="Pastel Red"></button>
+                        <button class="color-btn" data-color="#fd79a8" style="background-color: #fd79a8;" title="Pastel Pink"></button>
+                        <button class="color-btn" data-color="#e17055" style="background-color: #e17055;" title="Pastel Brown"></button>
+                        <button class="color-btn" data-color="#a29bfe" style="background-color: #a29bfe;" title="Pastel Purple"></button>
+                        <button class="color-btn" data-color="#74b9ff" style="background-color: #74b9ff;" title="Pastel Blue"></button>
+                        <button class="color-btn" data-color="#00b894" style="background-color: #00b894;" title="Pastel Green"></button>
+                    </div>
+                </div>
+
+                
+                <div class="save-load-section">
+                    <div class="save-section">
+                        <h3>Save Your Todo List for Future Access</h3>
+                        <button id="saveButton" class="action-btn save-btn">Save & Get Password</button>
+                        <div id="saveResult" class="result-message"></div>
+                    </div>
+
+                    <div class="load-section">
+                        <h3>Load Saved Todo List</h3>
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                id="passwordInput" 
+                                placeholder="Enter your password"
+                                maxlength="10"
+                            >
+                            <button id="loadButton" class="action-btn load-btn">Load</button>
+                        </div>
+                        <div id="loadResult" class="result-message"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Grace Zhou. Todo List App.</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
