@@ -123,13 +123,14 @@ class TodoApp {
         if (!todo) return;
 
         try {
-            const updatedTodo = await this.makeRequest(`/api/todos/${id}`, {
+            await this.makeRequest(`/api/todos/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify({ completed: !todo.completed })
             });
 
+            // Update only the completed property, keep all other properties (like text)
             const index = this.todos.findIndex(t => t.id === id);
-            this.todos[index] = updatedTodo;
+            this.todos[index].completed = !this.todos[index].completed;
             this.updateTodoList();
         } catch (error) {
             alert('Failed to update todo: ' + error.message);

@@ -4,7 +4,11 @@ Author: Grace Zhou
 
 This is a functioning todo list web application built with Node.js/Express backend and HTML/CSS/JavaScript frontend.
 
-### TLDR: To run locally use 'npm start' (save and get password feature not relevant here) or 'npm run dev' (recommended) and install dependencies beforehand. 
+### TLDR: 
+
+Deployed: [https://todo-app-frontend-jgp1.onrender.com/](https://todo-app-frontend-jgp1.onrender.com/)
+
+To run locally use 'npm start' (save and get password feature not relevant here) or 'npm run dev' (recommended) and install dependencies beforehand. 
 
 ### Functionality
 - **View todo list**: See all your todo items in a simplified interface
@@ -29,8 +33,9 @@ This is a functioning todo list web application built with Node.js/Express backe
 - **Save functionality**: Click "Save & Get Password" to generate a unique 8-character password (copy this password for future use!). 
     - Important Design Note: Password will only be on the screen for 5 seconds. Copy it ASAP.  
 - **Load functionality**: Enter your password to restore your saved todo list AND background color
-    - Design Justification 1: I wanted to ensure that users can return to their TODO list, even if they close the tab or refresh the page, but maintain simplicity compared to using a database service or creating a login page for users. 
-    - Design Justification 2: I chose to have the system generate a random password for the user to copy instead of having the user create a password also for simplicity purposes. 
+    - Design Justification 1: I wanted to ensure that users can return to their TODO list, even if they close the tab or refresh the page, but maintain simplicity compared to using a database service or creating a login page for users.
+    - Design Justification 2: The user's list should NOT stay on the page after refreshing because we need to allow many users to use the site. One user's list should not appear when another user loads the page. That is why the data disappears when the page is reloaded. Only saving + password can retrieve an existing list. 
+    - Design Justification 3: I chose to have the system generate a random password for the user to copy instead of having the user create a password for simplicity purposes. 
     - Extenstion: A possible extension is to allow users to create multiple TODO lists for planning different occaisions or events, and in this scenario, I would probably add a login page.  
 - **Persistence**: Data is saved on the server and can be accessed anytime with the generated. 
 
@@ -69,14 +74,14 @@ This is a functioning todo list web application built with Node.js/Express backe
 todo_app/
 ├── README.md
 ├── package.json
-├── start.sh                 # Convenience startup script
+├── start.sh # Convenience startup script
 ├── backend/
-│   ├── server.js           # Express server with API endpoints
-│   └── data/              # Directory for saved todo lists
+│   ├── server.js # Express server with API endpoints
+│   └── data/ # Directory for saved todo lists
 └── frontend/
-    ├── index.html         # Main HTML structure
-    ├── styles.css         # CSS styling with responsive design
-    └── script.js          # JavaScript functionality
+    ├── index.html # Main HTML structure
+    ├── styles.css # CSS styling with responsive design
+    └── script.js # JavaScript functionality
 ```
 
 ## API Endpoints

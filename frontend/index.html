@@ -55,14 +55,17 @@
 
                 
                 <div class="save-load-section">
-                    <div class="save-section">
-                        <h3>Save Your Todo List for Future Access</h3>
+                    <div class="save-section" style="margin-bottom:0.25rem;">
+                        <h3 style="margin-bottom:0.1rem;">Save for Future Access</h3>
+                        <p style="font-size:0.70rem; margin-top:0.12rem;">Click the button below to save your current todo list. Your password to retrieve it later will remain on the screen for 5s. If you are editing an existing list, you will need to save and retrieve a new password to access the most recent version. </p>
+                        <!-- <p>If you are editing an existing list, you will need to save and retrieve a new password to access the most recent version. </p> -->
                         <button id="saveButton" class="action-btn save-btn">Save & Get Password</button>
                         <div id="saveResult" class="result-message"></div>
                     </div>
-
+                </div>
+                <div class="save-load-section">
                     <div class="load-section">
-                        <h3>Load Saved Todo List</h3>
+                        <h3 style="margin-bottom:0.1rem;">Load A Saved Todo List</h3>
                         <div class="input-group">
                             <input 
                                 type="text" 
@@ -70,11 +73,14 @@
                                 placeholder="Enter your password"
                                 maxlength="10"
                             >
-                            <button id="loadButton" class="action-btn load-btn">Load</button>
+                            <button id="loadButton" class="action-btn load-btn">Retrieve</button>
                         </div>
                         <div id="loadResult" class="result-message"></div>
                     </div>
+
                 </div>
+                    
+                
             </div>
         </main>
 

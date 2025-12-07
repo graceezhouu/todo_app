@@ -1,0 +1,18 @@
+{
+  "todos": [
+    {
+      "id": "4149b978-db2f-43a4-939c-0081ce0c5f1b",
+      "text": "hi",
+      "completed": false,
+      "createdAt": "2025-12-07T05:23:56.389Z"
+    },
+    {
+      "id": "646b7305-054d-48c7-8ee0-ebded045d30b",
+      "text": "hihi",
+      "completed": false,
+      "createdAt": "2025-12-07T05:23:58.841Z"
+    }
+  ],
+  "backgroundColor": "#ffeaa7",
+  "savedAt": "2025-12-07T05:24:00.074Z"
+}
