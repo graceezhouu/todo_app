@@ -14,9 +14,6 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 const DATA_DIR = path.join(__dirname, 'data');
 fs.ensureDirSync(DATA_DIR);
 
-let activeTodos = [];
-let currentBackgroundColor = '#ffeaa7'; // Default pastel yellow
-
 //generate a unique password
 function generatePassword() {
     return uuidv4().substring(0, 8).toUpperCase();
@@ -29,15 +26,15 @@ function getSaveFileName(password) {
 
 // Routes
 
-//get current todo list
+//get current todo list - always return empty state (memoryless)
 app.get('/api/todos', (req, res) => {
     res.json({
-        todos: activeTodos,
-        backgroundColor: currentBackgroundColor
+        todos: [],
+        backgroundColor: '#ffeaa7'
     });
 });
 
-//add a new todo item
+//add a new todo item - return new todo but don't store (frontend handles temporary state)
 app.post('/api/todos', (req, res) => {
     const { text } = req.body;
     if (!text || text.trim() === '') {
@@ -51,54 +48,46 @@ app.post('/api/todos', (req, res) => {
         createdAt: new Date().toISOString()
     };
 
-    activeTodos.push(newTodo);
+    // Don't store anywhere - let frontend handle temporary state
     res.status(201).json(newTodo);
 });
 
-//update todo item (mark as complete/incomplete)
+//update todo item - just return success (frontend handles temporary state)
 app.put('/api/todos/:id', (req, res) => {
     const { id } = req.params;
     const { completed } = req.body;
 
-    const todoIndex = activeTodos.findIndex(todo => todo.id === id);
-    if (todoIndex === -1) {
-        return res.status(404).json({ error: 'Todo not found' });
-    }
-
-    activeTodos[todoIndex].completed = completed;
-    res.json(activeTodos[todoIndex]);
+    // Don't actually update anything - let frontend handle temporary state
+    res.json({ id, completed, success: true });
 });
 
-//delete a todo item
+//delete a todo item - just return success (frontend handles temporary state)
 app.delete('/api/todos/:id', (req, res) => {
     const { id } = req.params;
-    const todoIndex = activeTodos.findIndex(todo => todo.id === id);
     
-    if (todoIndex === -1) {
-        return res.status(404).json({ error: 'Todo not found' });
-    }
-
-    const deletedTodo = activeTodos.splice(todoIndex, 1)[0];
-    res.json(deletedTodo);
+    // Don't actually delete anything - let frontend handle temporary state
+    res.json({ id, success: true });
 });
 
-//update background color
+//update background color - just return success (frontend handles temporary state)
 app.put('/api/background-color', (req, res) => {
     const { color } = req.body;
     if (!color) {
         return res.status(400).json({ error: 'Color is required' });
     }
 
-    currentBackgroundColor = color;
-    res.json({ backgroundColor: currentBackgroundColor });
+    // Don't store color - let frontend handle temporary state
+    res.json({ backgroundColor: color });
 });
 
 //save todo list and generate password
 app.post('/api/save', (req, res) => {
+    const { todos, backgroundColor } = req.body;
+    
     const password = generatePassword();
     const saveData = {
-        todos: activeTodos,
-        backgroundColor: currentBackgroundColor,
+        todos: todos || [],
+        backgroundColor: backgroundColor || '#ffeaa7',
         savedAt: new Date().toISOString()
     };
 
@@ -132,12 +121,10 @@ app.post('/api/load', (req, res) => {
         }
 
         const saveData = JSON.parse(fs.readFileSync(fileName, 'utf8'));
-        activeTodos = saveData.todos || [];
-        currentBackgroundColor = saveData.backgroundColor || '#ffeaa7';
 
         res.json({
-            todos: activeTodos,
-            backgroundColor: currentBackgroundColor,
+            todos: saveData.todos || [],
+            backgroundColor: saveData.backgroundColor || '#ffeaa7',
             message: 'Todo list loaded successfully'
         });
     } catch (error) {

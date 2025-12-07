@@ -168,7 +168,11 @@ class TodoApp {
         try {
             this.showLoading();
             const result = await this.makeRequest('/api/save', {
-                method: 'POST'
+                method: 'POST',
+                body: JSON.stringify({
+                    todos: this.todos,
+                    backgroundColor: this.currentBackgroundColor
+                })
             });
 
             this.showMessage('saveResult', `Saved! Your password is: ${result.password}`, 'success');
