@@ -28,7 +28,7 @@ This is a functioning todo list web application built with Node.js/Express backe
 ### Save & Load System
 - **Save functionality**: Click "Save & Get Password" to generate a unique 8-character password (copy this password for future use!). 
     - Important Design Note: Password will only be on the screen for 5 seconds. Copy it ASAP.  
-- **Load functionality**: Enter your password to restore your saved todo list and background color
+- **Load functionality**: Enter your password to restore your saved todo list AND background color
     - Design Justification 1: I wanted to ensure that users can return to their TODO list, even if they close the tab or refresh the page, but maintain simplicity compared to using a database service or creating a login page for users. 
     - Design Justification 2: I chose to have the system generate a random password for the user to copy instead of having the user create a password also for simplicity purposes. 
     - Extenstion: A possible extension is to allow users to create multiple TODO lists for planning different occaisions or events, and in this scenario, I would probably add a login page.  

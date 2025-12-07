@@ -2,6 +2,7 @@ class TodoApp {
     constructor() {
         this.todos = [];
         this.currentBackgroundColor = '#ffeaa7';
+        this.API_BASE = "https://todo-app-nv7k.onrender.com";
         this.init();
     }
 
@@ -42,8 +43,11 @@ class TodoApp {
 
         const mergedOptions = { ...defaultOptions, ...options };
         
+        // Prepend API_BASE if URL is relative
+        const fullUrl = url.startsWith('/') ? this.API_BASE + url : url;
+        
         try {
-            const response = await fetch(url, mergedOptions);
+            const response = await fetch(fullUrl, mergedOptions);
             const data = await response.json();
             
             if (!response.ok) {
